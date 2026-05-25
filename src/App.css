@@ -2229,3 +2229,206 @@ body::before {
     font-size: 20px !important;
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    overflow: hidden !important;
+  }
+
+  .app {
+    height: 100dvh !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .header {
+    position: fixed !important;
+    top: calc(8px + env(safe-area-inset-top)) !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 50 !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .logo-mark {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 15px !important;
+    font-size: 22px !important;
+  }
+
+  .home-screen {
+    height: 100dvh !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .live-home-header {
+    position: fixed !important;
+    top: calc(64px + env(safe-area-inset-top)) !important;
+    left: 18px !important;
+    right: 18px !important;
+    z-index: 40 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .live-home-header div {
+    font-size: 20px !important;
+  }
+
+  .live-home-header strong {
+    font-size: 15px !important;
+  }
+
+  .home-proof-feed {
+    height: 100dvh !important;
+    overflow-y: auto !important;
+    scroll-snap-type: y mandatory !important;
+    scroll-behavior: smooth !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+
+  .home-proof-feed::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .home-proof-card {
+    position: relative !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    width: 100% !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    border-radius: 0 !important;
+    border: none !important;
+    overflow: hidden !important;
+    background: black !important;
+    box-shadow: none !important;
+  }
+
+  .home-proof-media {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .home-proof-media img,
+  .home-proof-media video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  .home-proof-shade {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
+    background:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.42), transparent 28%, rgba(0, 0, 0, 0.74)),
+      linear-gradient(to right, rgba(0, 0, 0, 0.42), transparent 58%) !important;
+  }
+
+  .home-proof-overlay {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 2 !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    padding: 0 18px calc(104px + env(safe-area-inset-bottom)) !important;
+    background: none !important;
+  }
+
+  .home-proof-meta {
+    max-width: 68% !important;
+  }
+
+  .home-proof-mission {
+    margin: 0 0 12px !important;
+    padding: 8px 13px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.16) !important;
+    backdrop-filter: blur(12px) !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    color: white !important;
+  }
+
+  .home-proof-overlay h2 {
+    margin: 0 0 8px !important;
+    font-size: 36px !important;
+    line-height: 0.95 !important;
+    color: white !important;
+  }
+
+  .home-proof-caption {
+    margin: 0 !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    max-width: 240px !important;
+  }
+
+  .home-proof-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: center !important;
+    margin-bottom: 8px !important;
+    transform: none !important;
+  }
+
+  .home-proof-actions button {
+    width: 64px !important;
+    min-height: 64px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: 25px !important;
+    background: rgba(35, 39, 50, 0.82) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    backdrop-filter: blur(18px) !important;
+  }
+
+  .home-proof-actions button:first-child {
+    background: rgba(22, 101, 52, 0.82) !important;
+  }
+
+  .home-proof-actions button:last-child {
+    width: 74px !important;
+    min-height: 74px !important;
+    border-radius: 24px !important;
+  }
+
+  .home-proof-actions button span {
+    font-size: 10px !important;
+    font-weight: 900 !important;
+  }
+
+  .mobile-nav {
+    position: fixed !important;
+    left: 20px !important;
+    right: 20px !important;
+    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    height: 64px !important;
+    padding: 7px !important;
+    z-index: 999999 !important;
+    border-radius: 999px !important;
+  }
+
+  .mobile-nav button {
+    height: 50px !important;
+    font-size: 21px !important;
+  }
+}

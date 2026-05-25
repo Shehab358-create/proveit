@@ -1008,133 +1008,97 @@ async function deleteComment(commentId) {
 </nav>
 
       {tab === "home" && (
-        <>
-<section className="live-home-header">
-  <div>
-    <span className="live-dot"></span>
-    Heute live
-  </div>
+  <section className="home-screen">
+    <section className="live-home-header">
+      <div>
+        <span className="live-dot"></span>
+        Heute live
+      </div>
 
-  <strong>{proofs.length} Proofs</strong>
-</section>
+      <strong>{proofs.length} Proofs</strong>
+    </section>
 
-{proofs.length > 0 ? (
-  <section className="home-proof-feed">
-    {proofs.slice(0, 5).map((proof) => {
-      const relatedMission = missions.find(
-        (mission) => mission.id === proof.missionId
-      );
+    {proofs.length > 0 ? (
+      <section className="home-proof-feed">
+        {proofs.slice(0, 5).map((proof) => {
+          const relatedMission = missions.find(
+            (mission) => mission.id === proof.missionId
+          );
 
-      return (
-        <article className="home-proof-card" key={proof.id}>
-          <div className="home-proof-media">
-            {proof.mediaUrl ? (
-              proof.mediaType?.startsWith("video") ? (
-                <video src={proof.mediaUrl} controls />
-              ) : (
-                <img src={proof.mediaUrl} alt="Proof" />
-              )
-            ) : (
-              <div className="home-proof-empty">
-                <span>⚡</span>
-                <p>Text-Proof</p>
+          return (
+            <article className="home-proof-card" key={proof.id}>
+              <div className="home-proof-media">
+                {proof.mediaUrl ? (
+                  proof.mediaType?.startsWith("video") ? (
+                    <video src={proof.mediaUrl} controls playsInline />
+                  ) : (
+                    <img src={proof.mediaUrl} alt="Proof" />
+                  )
+                ) : (
+                  <div className="home-proof-empty">
+                    <span>⚡</span>
+                    <p>Text-Proof</p>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
 
-          <div className="home-proof-overlay">
-            <div>
-              <p className="home-proof-mission">
-                {relatedMission?.title || "Live Mission"}
-              </p>
-              <h2>{proof.user}</h2>
-              <p className="home-proof-caption">“{proof.caption}”</p>
-            </div>
+              <div className="home-proof-shade"></div>
 
-            <div className="home-proof-actions">
-              <button
-                onClick={() => vote(proof.id)}
-                className={votedProofIds.includes(proof.id) ? "voted" : ""}
-              >
-                🔥
-                <span>{proof.votes.toLocaleString("de-DE")}</span>
-              </button>
+              <div className="home-proof-overlay">
+                <div className="home-proof-meta">
+                  <p className="home-proof-mission">
+                    {relatedMission?.title || "Live Mission"}
+                  </p>
 
-              <button
-                onClick={() => {
-                  setActiveMissionId(proof.missionId);
-                  setTab("mission");
-                }}
-              >
-                ⚡
-                <span>Mitmachen</span>
-              </button>
-            </div>
-          </div>
-        </article>
-      );
-    })}
-  </section>
-) : (
-  <section className="empty-live-feed card">
-    <h2>Noch keine Proofs</h2>
-    <p>Starte die erste Mission und werde als Erster gefeatured.</p>
+                  <h2>{proof.user}</h2>
 
-    {missions[0] && (
-      <button className="main-btn" onClick={() => openMission(missions[0].id)}>
-        Erste Mission starten
-      </button>
+                  <p className="home-proof-caption">“{proof.caption}”</p>
+                </div>
+
+                <div className="home-proof-actions">
+                  <button
+                    onClick={() => vote(proof.id)}
+                    className={votedProofIds.includes(proof.id) ? "voted" : ""}
+                  >
+                    🔥
+                    <span>{proof.votes.toLocaleString("de-DE")}</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setActiveMissionId(proof.missionId);
+                      setTab("mission");
+                    }}
+                  >
+                    ⚡
+                    <span>Mitmachen</span>
+                  </button>
+                </div>
+              </div>
+            </article>
+          );
+        })}
+      </section>
+    ) : (
+      <section className="empty-live-feed card">
+        <h2>Noch keine Proofs</h2>
+        <p>Starte die erste Mission und werde als Erster gefeatured.</p>
+
+        {missions[0] && (
+          <button
+            className="main-btn"
+            onClick={() => openMission(missions[0].id)}
+          >
+            Erste Mission starten
+          </button>
+        )}
+      </section>
     )}
   </section>
 )}
-
-        {isLoadingMissions && (
-  <div className="card status-card">
-    Missionen werden aus Supabase geladen...
-  </div>
-)}
-
-{supabaseError && (
-  <div className="card status-card error-card">
-    {supabaseError}
-  </div>
-)}
-          <section className="mission-grid desktop-missions">
-            {missions.map((mission) => (
-              <div className="card mission-card" key={mission.id}>
-                <div className="card-top">
-                  <span className="category-pill">{mission.category}</span>
-                  <span>{isMissionEnded(mission.endTime)
-                         ? "🏁 Beendet"
-                         : `⏳ ${formatCountdown(mission.endTime)}`}</span>
-                </div>
-
-                <h2>{mission.title}</h2>
-                <p className="mission-short-text">
-                    {mission.description.length > 72
-                    ? mission.description.slice(0, 72) + "..."
-                    : mission.description}
-                </p>
-
-                <div className="stats">
-                  <div>
-                    <strong>{mission.participants.toLocaleString("de-DE")}</strong>
-                    <small>Teilnehmer</small>
-                  </div>
-                  <div>
-                    <strong>Global</strong>
-                    <small>Ort</small>
-                  </div>
-                </div>
-
-                <div className="reward compact-reward">👑 Spotlight gewinnen</div>
-
-                <button className="main-btn" onClick={() => openMission(mission.id)}>
-                  Mission starten
-                </button>
-              </div>
-            ))}
-          </section>
+ 
+{tab === "mission" && activeMission && (
+  <>
 
           <section className="two-columns">
   <div className="card spotlight">
