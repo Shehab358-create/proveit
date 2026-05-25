@@ -2698,3 +2698,62 @@ body::before {
     filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.85));
   }
 }
+
+@media (max-width: 768px) {
+  body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  .app {
+    height: auto !important;
+    min-height: 100dvh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding: 16px 16px 90px !important;
+  }
+
+  .app.home-mode {
+    height: 100dvh !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+  }
+
+  .app.home-mode .home-screen {
+    height: 100dvh !important;
+    overflow: hidden !important;
+  }
+
+  .app.home-mode .home-proof-feed {
+    height: 100dvh !important;
+    overflow-y: auto !important;
+    scroll-snap-type: y mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .app.home-mode .home-proof-card {
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+  }
+
+  .app:not(.home-mode) .home-screen,
+  .app:not(.home-mode) .home-proof-feed,
+  .app:not(.home-mode) .home-proof-card {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  .app:not(.home-mode) .reels-top-bar {
+    display: none !important;
+  }
+
+  .home-proof-actions,
+  .home-proof-actions button,
+  .mobile-nav,
+  .mobile-nav button {
+    pointer-events: auto !important;
+  }
+}

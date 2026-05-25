@@ -956,7 +956,7 @@ async function deleteComment(commentId) {
 }
 
   return (
-    <div className="app">
+    <div className={`app ${tab === "home" ? "home-mode" : ""}`}>
       <header className="header">
   <div className="brand">
     <div className="logo-mark">⚡</div>
