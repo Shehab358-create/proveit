@@ -1137,3 +1137,231 @@ button:disabled {
 .social-proof {
   align-items: start;
 }
+
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .app {
+    padding: 28px 18px 96px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .header {
+    display: grid;
+    gap: 26px;
+    margin-bottom: 30px;
+  }
+
+  .brand {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .logo-mark {
+    width: 72px;
+    height: 72px;
+    border-radius: 22px;
+    font-size: 32px;
+  }
+
+  .brand h1 {
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .brand .eyebrow {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+    line-height: 1.35;
+  }
+
+  nav {
+    position: fixed;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 10px;
+    border-radius: 28px;
+    background: rgba(10, 10, 12, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
+  }
+
+  nav button {
+    padding: 12px 8px;
+    border-radius: 20px;
+    font-size: 0;
+    min-width: 0;
+  }
+
+  nav button:nth-child(1)::after {
+    content: "🏠";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(2)::after {
+    content: "⚡";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(3)::after {
+    content: "🏆";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(4)::after {
+    content: "👤";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(5),
+  nav button:nth-child(6) {
+    display: none;
+  }
+
+  nav button.active {
+    background: white;
+    color: black;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(255, 255, 255, 0.18);
+  }
+
+  .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .mission-card {
+    min-height: auto;
+    padding: 24px;
+    border-radius: 34px;
+  }
+
+  .mission-card h2 {
+    font-size: 34px;
+    line-height: 1.05;
+    letter-spacing: -1.4px;
+    margin-top: 34px;
+  }
+
+  .mission-card p {
+    font-size: 20px;
+    line-height: 1.45;
+  }
+
+  .card-top {
+    align-items: center;
+  }
+
+  .category-pill {
+    padding: 10px 16px;
+    font-size: 15px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .stats div {
+    padding: 18px 12px;
+    border-radius: 22px;
+  }
+
+  .stats strong {
+    font-size: 28px;
+  }
+
+  .reward {
+    font-size: 19px;
+    line-height: 1.35;
+    padding: 18px;
+    border-radius: 22px;
+  }
+
+  .main-btn {
+    width: 100%;
+    padding: 18px 22px;
+    font-size: 21px;
+    border-radius: 999px;
+  }
+
+  .two-columns,
+  .profile-grid,
+  .admin-layout,
+  .mission-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    border-radius: 30px;
+  }
+
+  .spotlight h3 {
+    font-size: 38px;
+  }
+
+  .social-proof {
+    grid-template-columns: 1fr;
+    padding: 18px;
+    border-radius: 32px;
+  }
+
+  .rank {
+    width: 100%;
+    height: auto;
+    min-height: 70px;
+    border-radius: 24px;
+    font-size: 32px;
+  }
+
+  .proof-side-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .proof-side-actions button,
+  .side-badge {
+    width: 100%;
+    min-height: 74px;
+    border-radius: 22px;
+  }
+
+  .media-frame {
+    border-radius: 24px;
+  }
+
+  .proof-media {
+    border-radius: 24px;
+  }
+
+  .login-card {
+    width: calc(100vw - 28px);
+    padding: 28px;
+    border-radius: 34px;
+  }
+
+  .login-card h1 {
+    font-size: 58px;
+  }
+
+  .login-subtitle {
+    font-size: 20px;
+  }
+}
