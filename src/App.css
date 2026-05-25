@@ -2029,3 +2029,78 @@ body::before {
     margin-bottom: 12px !important;
   }
 }
+
+@media (max-width: 768px) {
+  .home-proof-feed {
+    gap: 18px !important;
+    padding-bottom: 92px !important;
+  }
+
+  .home-proof-card {
+    min-height: calc(100vh - 230px) !important;
+    max-height: 640px !important;
+    border-radius: 30px !important;
+  }
+
+  .home-proof-media img,
+  .home-proof-media video {
+    object-fit: cover !important;
+  }
+
+  .home-proof-overlay {
+    padding: 20px !important;
+    background:
+      linear-gradient(to top, rgba(0, 0, 0, 0.88), transparent 62%),
+      linear-gradient(to right, rgba(0, 0, 0, 0.38), transparent 58%) !important;
+  }
+
+  .home-proof-overlay h2 {
+    font-size: 36px !important;
+    line-height: 0.95 !important;
+  }
+
+  .home-proof-caption {
+    font-size: 16px !important;
+    max-width: 230px !important;
+  }
+
+  .home-proof-actions {
+    transform: translateY(-8px);
+  }
+
+  .mobile-nav {
+    bottom: calc(6px + env(safe-area-inset-bottom)) !important;
+    left: 28px !important;
+    right: 28px !important;
+    height: 58px !important;
+    padding: 6px !important;
+  }
+
+  .mobile-nav button {
+    height: 46px !important;
+    font-size: 21px !important;
+  }
+
+  .app {
+    padding-top: 10px !important;
+    padding-bottom: 86px !important;
+  }
+
+  .header {
+    margin-bottom: 10px !important;
+  }
+
+  .live-home-header {
+    margin-bottom: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+
+  .home-proof-card {
+    scroll-snap-align: start;
+  }
+}
