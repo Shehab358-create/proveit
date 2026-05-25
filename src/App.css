@@ -1939,3 +1939,93 @@ body::before {
     scroll-snap-align: start;
   }
 }
+
+@media (max-width: 768px) {
+  .home-proof-card {
+    min-height: calc(100vh - 250px) !important;
+    border-radius: 30px !important;
+  }
+
+  .home-proof-overlay {
+    padding: 18px !important;
+  }
+
+  .home-proof-overlay h2 {
+    font-size: 34px !important;
+    line-height: 1 !important;
+  }
+
+  .home-proof-caption {
+    font-size: 15px !important;
+    max-width: 220px !important;
+  }
+
+  .home-proof-mission {
+    font-size: 13px !important;
+    max-width: 230px !important;
+    padding: 8px 12px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-proof-actions {
+    gap: 12px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .home-proof-actions button {
+    width: 62px !important;
+    min-height: 62px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    font-size: 24px !important;
+  }
+
+  .home-proof-actions button span {
+    font-size: 10px !important;
+    margin-top: 2px !important;
+  }
+
+  .home-proof-actions button:last-child {
+    border-radius: 22px !important;
+    width: 74px !important;
+    min-height: 74px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    left: 24px !important;
+    right: 24px !important;
+    bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+    height: 64px !important;
+    padding: 7px !important;
+  }
+
+  .mobile-nav button {
+    height: 50px !important;
+    font-size: 22px !important;
+  }
+
+  .app {
+    padding-bottom: 96px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo-mark {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 16px !important;
+    font-size: 23px !important;
+  }
+
+  .header {
+    margin-bottom: 14px !important;
+    padding-top: 4px !important;
+  }
+
+  .live-home-header {
+    margin-bottom: 12px !important;
+  }
+}
