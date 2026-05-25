@@ -1563,3 +1563,74 @@ button:disabled {
     padding-bottom: 120px !important;
   }
 }
+
+@media (max-width: 768px) {
+  .top-nav {
+    position: fixed !important;
+    top: unset !important;
+    bottom: 18px !important;
+    left: 18px !important;
+    right: 18px !important;
+    width: calc(100vw - 36px) !important;
+    height: 72px !important;
+    z-index: 999999 !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+
+    padding: 8px !important;
+    margin: 0 !important;
+
+    background: rgba(10, 10, 14, 0.94) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 999px !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7) !important;
+  }
+
+  .top-nav button {
+    width: 100% !important;
+    height: 56px !important;
+    min-width: 0 !important;
+    padding: 0 !important;
+    border-radius: 999px !important;
+    font-size: 0 !important;
+  }
+
+  .top-nav button:nth-child(1)::after {
+    content: "🏠";
+    font-size: 24px;
+  }
+
+  .top-nav button:nth-child(2)::after {
+    content: "⚡";
+    font-size: 24px;
+  }
+
+  .top-nav button:nth-child(3)::after {
+    content: "🏆";
+    font-size: 24px;
+  }
+
+  .top-nav button:nth-child(4)::after {
+    content: "👤";
+    font-size: 24px;
+  }
+
+  .top-nav button:nth-child(5),
+  .top-nav button:nth-child(6) {
+    display: none !important;
+  }
+
+  .top-nav button.active {
+    background: white !important;
+    color: black !important;
+    transform: translateY(-4px) !important;
+  }
+
+  .app {
+    padding-bottom: 120px !important;
+  }
+}

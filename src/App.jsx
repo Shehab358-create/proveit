@@ -967,7 +967,7 @@ async function deleteComment(commentId) {
     </div>
   </div>
 
-        <nav>
+        <nav className="top-nav">
           <button onClick={() => setTab("home")} className={tab === "home" ? "active" : ""}>
             Home
           </button>
