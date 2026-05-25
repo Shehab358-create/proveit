@@ -1087,6 +1087,7 @@ async function deleteComment(commentId) {
   <button
   type="button"
   onClick={(e) => {
+    e.preventDefault();
     e.stopPropagation();
     vote(proof.id);
   }}
