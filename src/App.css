@@ -2129,3 +2129,103 @@ body::before {
     min-height: calc(100vh - 255px) !important;
   }
 }
+
+@media (max-width: 768px) {
+  .app {
+    padding: 10px 16px 90px !important;
+  }
+
+  .header {
+    margin-bottom: 10px !important;
+    padding: 6px 0 4px !important;
+  }
+
+  .logo-mark {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 15px !important;
+    font-size: 22px !important;
+  }
+
+  .live-home-header {
+    margin: 8px 0 12px !important;
+    padding: 0 2px !important;
+  }
+
+  .live-home-header div {
+    font-size: 21px !important;
+  }
+
+  .live-home-header strong {
+    font-size: 15px !important;
+  }
+
+  .home-proof-feed {
+    gap: 18px !important;
+    padding-bottom: 110px !important;
+  }
+
+  .home-proof-card {
+    min-height: calc(100vh - 230px) !important;
+    max-height: 620px !important;
+    border-radius: 30px !important;
+  }
+
+  .home-proof-overlay {
+    padding: 18px !important;
+  }
+
+  .home-proof-mission {
+    font-size: 13px !important;
+    max-width: 230px !important;
+    padding: 8px 12px !important;
+  }
+
+  .home-proof-overlay h2 {
+    font-size: 34px !important;
+    line-height: 0.95 !important;
+  }
+
+  .home-proof-caption {
+    font-size: 15px !important;
+    max-width: 220px !important;
+  }
+
+  .home-proof-actions {
+    gap: 10px !important;
+    transform: translateY(-4px) !important;
+  }
+
+  .home-proof-actions button {
+    width: 60px !important;
+    min-height: 60px !important;
+    border-radius: 50% !important;
+    font-size: 23px !important;
+  }
+
+  .home-proof-actions button:last-child {
+    width: 70px !important;
+    min-height: 70px !important;
+    border-radius: 22px !important;
+  }
+
+  .home-proof-actions button span {
+    font-size: 10px !important;
+  }
+
+  .mobile-nav {
+    position: fixed !important;
+    left: 28px !important;
+    right: 28px !important;
+    bottom: calc(8px + env(safe-area-inset-bottom)) !important;
+    height: 58px !important;
+    padding: 6px !important;
+    z-index: 9999999 !important;
+    border-radius: 999px !important;
+  }
+
+  .mobile-nav button {
+    height: 46px !important;
+    font-size: 20px !important;
+  }
+}
