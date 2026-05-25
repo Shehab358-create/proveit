@@ -722,19 +722,38 @@ async function saveProfile() {
 
   async function vote(id) {
   if (!user) {
-    setSupabaseError("Bitte einloggen, um zu voten.");
+    alert("Bitte einloggen, um zu voten.");
     return;
   }
 
-  if (votedProofIds.includes(id)) return;
+  if (votedProofIds.includes(id)) {
+    alert("Du hast für diesen Proof schon gevotet.");
+    return;
+  }
 
   const proof = proofs.find((item) => item.id === id);
-  if (!proof) return;
+
+  if (!proof) {
+    alert("Proof nicht gefunden.");
+    return;
+  }
 
   if (proof.handle === playerHandle) {
-  setSupabaseError("Du kannst nicht für deinen eigenen Proof voten.");
-  return;
-}
+    alert("Du kannst nicht für deinen eigenen Proof voten.");
+    return;
+  }
+
+  const oldVoteCount = Number(proof.votes || 0);
+  const newVoteCount = oldVoteCount + 1;
+
+  // Sofort im UI anzeigen
+  setProofs((oldProofs) =>
+    oldProofs.map((item) =>
+      item.id === id ? { ...item, votes: newVoteCount } : item
+    )
+  );
+
+  setVotedProofIds((oldIds) => [...oldIds, id]);
 
   const { error: voteError } = await supabase.from("votes").insert([
     {
@@ -746,16 +765,24 @@ async function saveProfile() {
   if (voteError) {
     console.error("Create vote error:", voteError);
 
+    // Wenn schon gevotet wurde, UI so lassen
     if (voteError.code === "23505") {
-      setVotedProofIds([...votedProofIds, id]);
+      alert("Du hast für diesen Proof schon gevotet.");
       return;
     }
 
-    setSupabaseError("Vote konnte nicht gespeichert werden.");
+    // Rollback, falls Speichern fehlschlägt
+    setProofs((oldProofs) =>
+      oldProofs.map((item) =>
+        item.id === id ? { ...item, votes: oldVoteCount } : item
+      )
+    );
+
+    setVotedProofIds((oldIds) => oldIds.filter((voteId) => voteId !== id));
+
+    alert("Vote konnte nicht gespeichert werden.");
     return;
   }
-
-  const newVoteCount = proof.votes + 1;
 
   const { error: proofError } = await supabase
     .from("proofs")
@@ -764,17 +791,8 @@ async function saveProfile() {
 
   if (proofError) {
     console.error("Vote count update error:", proofError);
-    setSupabaseError("Vote-Zahl konnte nicht aktualisiert werden.");
-    return;
+    alert("Vote wurde gespeichert, aber die Vote-Zahl konnte nicht aktualisiert werden.");
   }
-
-  setProofs((oldProofs) =>
-    oldProofs.map((item) =>
-      item.id === id ? { ...item, votes: newVoteCount } : item
-    )
-  );
-
-  setVotedProofIds([...votedProofIds, id]);
 }
 
   function handleFileSelect(e) {
