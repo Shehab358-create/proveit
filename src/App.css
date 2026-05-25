@@ -1634,3 +1634,54 @@ button:disabled {
     padding-bottom: 120px !important;
   }
 }
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .top-nav {
+    display: none !important;
+  }
+
+  .mobile-nav {
+    position: fixed !important;
+    left: 18px !important;
+    right: 18px !important;
+    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+    z-index: 999999 !important;
+
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 8px !important;
+
+    padding: 9px !important;
+    border-radius: 999px !important;
+    background: rgba(10, 10, 14, 0.94) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.75) !important;
+  }
+
+  .mobile-nav button {
+    height: 56px !important;
+    border-radius: 999px !important;
+    font-size: 24px !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: white !important;
+  }
+
+  .mobile-nav button.active {
+    background: white !important;
+    color: black !important;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 45px rgba(255, 255, 255, 0.18);
+  }
+
+  .app {
+    padding-bottom: 125px !important;
+  }
+}

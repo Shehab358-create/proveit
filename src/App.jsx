@@ -988,6 +988,23 @@ async function deleteComment(commentId) {
           </button>
         </nav>
       </header>
+      <nav className="mobile-nav">
+  <button onClick={() => setTab("home")} className={tab === "home" ? "active" : ""}>
+    🏠
+  </button>
+
+  <button onClick={() => setTab("mission")} className={tab === "mission" ? "active" : ""}>
+    ⚡
+  </button>
+
+  <button onClick={() => setTab("leaderboard")} className={tab === "leaderboard" ? "active" : ""}>
+    🏆
+  </button>
+
+  <button onClick={() => setTab("profile")} className={tab === "profile" ? "active" : ""}>
+    👤
+  </button>
+</nav>
 
       {tab === "home" && (
         <>
