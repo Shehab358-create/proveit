@@ -1009,6 +1009,50 @@ async function deleteComment(commentId) {
 
       {tab === "home" && (
         <>
+<section className="home-hero">
+  <div className="hero-live-pill">
+    <span className="pulse-dot"></span>
+    Live Missionen laufen gerade
+  </div>
+
+  <h2>
+    Beweis es. <br />
+    Nicht nur zuschauen.
+  </h2>
+
+  <p>
+    Tritt einer Mission bei, poste deinen Proof und kämpfe um Spotlight,
+    Votes und den Platz als Tages-Champion.
+  </p>
+
+  <div className="hero-stats-row">
+    <div>
+      <strong>{missions.length}</strong>
+      <span>aktive Missionen</span>
+    </div>
+
+    <div>
+      <strong>
+        {missions
+          .reduce((sum, mission) => sum + Number(mission.participants || 0), 0)
+          .toLocaleString("de-DE")}
+      </strong>
+      <span>Teilnehmer</span>
+    </div>
+
+    <div>
+      <strong>{proofs.length}</strong>
+      <span>Proofs</span>
+    </div>
+  </div>
+
+  {missions[0] && (
+    <button className="hero-cta" onClick={() => openMission(missions[0].id)}>
+      🔥 Aktuelle Mission starten
+    </button>
+  )}
+</section>
+
         {isLoadingMissions && (
   <div className="card status-card">
     Missionen werden aus Supabase geladen...
