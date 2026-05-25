@@ -1009,13 +1009,15 @@ async function deleteComment(commentId) {
 
       {tab === "home" && (
   <section className="home-screen">
-    <section className="live-home-header">
-      <div>
-        <span className="live-dot"></span>
-        Heute live
+    <section className="reels-top-bar">
+      <span className="top-brand">⚡ ProveIt</span>
+
+      <div className="top-tabs">
+        <button className="muted-tab">Gefolgt</button>
+        <button className="active-tab">Für dich</button>
       </div>
 
-      <strong>{proofs.length} Proofs</strong>
+      <button className="search-btn">⌕</button>
     </section>
 
     {proofs.length > 0 ? (
@@ -1056,24 +1058,37 @@ async function deleteComment(commentId) {
                 </div>
 
                 <div className="home-proof-actions">
-                  <button
-                    onClick={() => vote(proof.id)}
-                    className={votedProofIds.includes(proof.id) ? "voted" : ""}
-                  >
-                    🔥
-                    <span>{proof.votes.toLocaleString("de-DE")}</span>
-                  </button>
+  <button
+    onClick={() => vote(proof.id)}
+    className={votedProofIds.includes(proof.id) ? "voted" : ""}
+  >
+    🔥
+    <span>{proof.votes.toLocaleString("de-DE")}</span>
+  </button>
 
-                  <button
-                    onClick={() => {
-                      setActiveMissionId(proof.missionId);
-                      setTab("mission");
-                    }}
-                  >
-                    ⚡
-                    <span>Mitmachen</span>
-                  </button>
-                </div>
+  <button onClick={() => setOpenComments({
+    ...openComments,
+    [proof.id]: !openComments[proof.id],
+  })}>
+    💬
+    <span>{getProofComments(proof.id).length}</span>
+  </button>
+
+  <button
+    onClick={() => {
+      setActiveMissionId(proof.missionId);
+      setTab("mission");
+    }}
+  >
+    ⚡
+    <span>Challenge</span>
+  </button>
+
+  <button>
+    ↗
+    <span>Teilen</span>
+  </button>
+</div>
               </div>
             </article>
           );
