@@ -2104,3 +2104,28 @@ body::before {
     scroll-snap-align: start;
   }
 }
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    left: 46px !important;
+    right: 46px !important;
+    bottom: calc(4px + env(safe-area-inset-bottom)) !important;
+    height: 54px !important;
+    padding: 5px !important;
+    border-radius: 999px !important;
+    opacity: 0.96;
+  }
+
+  .mobile-nav button {
+    height: 44px !important;
+    font-size: 20px !important;
+  }
+
+  .home-proof-feed {
+    padding-bottom: 72px !important;
+  }
+
+  .home-proof-card {
+    min-height: calc(100vh - 255px) !important;
+  }
+}
