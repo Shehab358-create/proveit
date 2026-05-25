@@ -1013,11 +1013,37 @@ async function deleteComment(commentId) {
       <span className="top-brand">⚡ ProveIt</span>
 
       <div className="top-tabs">
-        <button className="muted-tab">Gefolgt</button>
-        <button className="active-tab">Für dich</button>
+        <button
+  type="button"
+  className="muted-tab"
+  onClick={(e) => {
+    e.stopPropagation();
+    alert("Gefolgt kommt später.");
+  }}
+>
+  Gefolgt
+</button>
+        <button
+  type="button"
+  className="active-tab"
+  onClick={(e) => {
+    e.stopPropagation();
+  }}
+>
+  Für dich
+</button>
       </div>
 
-      <button className="search-btn">⌕</button>
+      <button
+  type="button"
+  className="search-btn"
+  onClick={(e) => {
+    e.stopPropagation();
+    alert("Suche kommt später.");
+  }}
+>
+  ⌕
+</button>
     </section>
 
     {proofs.length > 0 ? (
@@ -1059,35 +1085,55 @@ async function deleteComment(commentId) {
 
                 <div className="home-proof-actions">
   <button
-    onClick={() => vote(proof.id)}
-    className={votedProofIds.includes(proof.id) ? "voted" : ""}
-  >
-    🔥
-    <span>{proof.votes.toLocaleString("de-DE")}</span>
-  </button>
-
-  <button onClick={() => setOpenComments({
-    ...openComments,
-    [proof.id]: !openComments[proof.id],
-  })}>
-    💬
-    <span>{getProofComments(proof.id).length}</span>
-  </button>
+  type="button"
+  onClick={(e) => {
+    e.stopPropagation();
+    vote(proof.id);
+  }}
+  className={votedProofIds.includes(proof.id) ? "voted" : ""}
+>
+  🔥
+  <span>{proof.votes.toLocaleString("de-DE")}</span>
+</button>
 
   <button
-    onClick={() => {
-      setActiveMissionId(proof.missionId);
-      setTab("mission");
-    }}
-  >
-    ⚡
-    <span>Challenge</span>
-  </button>
+  type="button"
+  onClick={(e) => {
+    e.stopPropagation();
+    setActiveMissionId(proof.missionId);
+    setTab("mission");
+    setOpenComments({
+      ...openComments,
+      [proof.id]: true,
+    });
+  }}
+>
+  💬
+  <span>{getProofComments(proof.id).length}</span>
+</button>
 
-  <button>
-    ↗
-    <span>Teilen</span>
-  </button>
+  <button
+  type="button"
+  onClick={async (e) => {
+    e.stopPropagation();
+
+    const shareData = {
+      title: "ProveIt",
+      text: `${proof.user} hat einen Proof gepostet: ${proof.caption}`,
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+      alert("Link kopiert!");
+    }
+  }}
+>
+  ↗
+  <span>Teilen</span>
+</button>
 </div>
               </div>
             </article>
