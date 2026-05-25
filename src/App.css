@@ -1630,3 +1630,93 @@ body::before {
     padding: 18px;
   }
 }
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding: 22px !important;
+    margin-bottom: 18px !important;
+  }
+
+  .home-hero h2 {
+    font-size: 42px !important;
+    line-height: 0.95 !important;
+    margin: 18px 0 10px !important;
+  }
+
+  .home-hero p {
+    font-size: 17px !important;
+    line-height: 1.35 !important;
+  }
+
+  .hero-stats-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .hero-stats-row div {
+    display: grid !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 12px 8px !important;
+    border-radius: 18px !important;
+  }
+
+  .hero-stats-row strong {
+    font-size: 22px !important;
+  }
+
+  .hero-stats-row span {
+    font-size: 11px !important;
+  }
+
+  .mission-card {
+    min-height: 430px !important;
+    padding: 22px !important;
+  }
+
+  .mission-card h2 {
+    font-size: 32px !important;
+    margin: 28px 0 10px !important;
+  }
+
+  .mission-short-text {
+    font-size: 17px !important;
+    line-height: 1.35 !important;
+  }
+
+  .compact-reward {
+    font-size: 16px !important;
+    padding: 14px !important;
+  }
+
+  .card {
+    padding: 20px !important;
+  }
+
+  .two-columns {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .active-mission {
+    padding: 22px !important;
+  }
+
+  .active-mission h2 {
+    font-size: 36px !important;
+    text-align: center;
+  }
+
+  .active-mission .tag,
+  .active-mission .time {
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  .detail-short-text {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+    text-align: center;
+  }
+}

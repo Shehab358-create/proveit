@@ -1012,7 +1012,7 @@ async function deleteComment(commentId) {
 <section className="home-hero">
   <div className="hero-live-pill">
     <span className="pulse-dot"></span>
-    Live Missionen laufen gerade
+    Live
   </div>
 
   <h2>
@@ -1020,10 +1020,7 @@ async function deleteComment(commentId) {
     Nicht nur zuschauen.
   </h2>
 
-  <p>
-    Tritt einer Mission bei, poste deinen Proof und kämpfe um Spotlight,
-    Votes und den Platz als Tages-Champion.
-  </p>
+  <p>Mach mit. Poste Proof. Gewinne Spotlight.</p>
 
   <div className="hero-stats-row">
     <div>
@@ -1048,7 +1045,7 @@ async function deleteComment(commentId) {
 
   {missions[0] && (
     <button className="hero-cta" onClick={() => openMission(missions[0].id)}>
-      🔥 Aktuelle Mission starten
+      🔥 Starten
     </button>
   )}
 </section>
@@ -1075,7 +1072,11 @@ async function deleteComment(commentId) {
                 </div>
 
                 <h2>{mission.title}</h2>
-                <p>{mission.description}</p>
+                <p className="mission-short-text">
+                    {mission.description.length > 72
+                    ? mission.description.slice(0, 72) + "..."
+                    : mission.description}
+                </p>
 
                 <div className="stats">
                   <div>
@@ -1088,7 +1089,7 @@ async function deleteComment(commentId) {
                   </div>
                 </div>
 
-                <div className="reward">👑 {mission.reward}</div>
+                <div className="reward compact-reward">👑 Spotlight gewinnen</div>
 
                 <button className="main-btn" onClick={() => openMission(mission.id)}>
                   Mission starten
@@ -1146,7 +1147,7 @@ async function deleteComment(commentId) {
             <div className="card active-mission">
   <span className="tag">{activeMission.category}</span>
   <h2>{activeMission.title}</h2>
-  <p>{activeMission.description}</p>
+  <p className="detail-short-text">{activeMission.description}</p>
 
   <div className="reward">👑 {activeMission.reward}</div>
 
