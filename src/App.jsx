@@ -988,7 +988,8 @@ async function deleteComment(commentId) {
           </button>
         </nav>
       </header>
-      <nav className="mobile-nav">
+      
+    <nav className="mobile-nav">
   <button onClick={() => setTab("home")} className={tab === "home" ? "active" : ""}>
     🏠
   </button>

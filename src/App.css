@@ -1138,343 +1138,32 @@ button:disabled {
   align-items: start;
 }
 
+.mobile-nav {
+  display: none;
+}
+
 @media (max-width: 768px) {
   body {
     overflow-x: hidden;
   }
 
   .app {
-    padding: 28px 18px 96px;
     width: 100%;
     max-width: 100%;
-  }
-
-  .header {
-    display: grid;
-    gap: 26px;
-    margin-bottom: 30px;
-  }
-
-  .brand {
-    display: grid;
-    grid-template-columns: 72px 1fr;
-    align-items: center;
-    gap: 18px;
-  }
-
-  .logo-mark {
-    width: 72px;
-    height: 72px;
-    border-radius: 22px;
-    font-size: 32px;
-  }
-
-  .brand h1 {
-    font-size: 42px;
-    line-height: 1;
-    letter-spacing: -2px;
-  }
-
-  .brand .eyebrow {
-    font-size: 13px;
-    margin-bottom: 6px;
-  }
-
-  .subtitle {
-    font-size: 17px;
-    line-height: 1.35;
-  }
-
-  nav {
-    position: fixed;
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    z-index: 100;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-    padding: 10px;
-    border-radius: 28px;
-    background: rgba(10, 10, 12, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(18px);
-    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55);
-  }
-
-  nav button {
-    padding: 12px 8px;
-    border-radius: 20px;
-    font-size: 0;
-    min-width: 0;
-  }
-
-  nav button:nth-child(1)::after {
-    content: "🏠";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(2)::after {
-    content: "⚡";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(3)::after {
-    content: "🏆";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(4)::after {
-    content: "👤";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(5),
-  nav button:nth-child(6) {
-    display: none;
-  }
-
-  nav button.active {
-    background: white;
-    color: black;
-    transform: translateY(-4px);
-    box-shadow: 0 14px 40px rgba(255, 255, 255, 0.18);
-  }
-
-  .mission-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .mission-card {
-    min-height: auto;
-    padding: 24px;
-    border-radius: 34px;
-  }
-
-  .mission-card h2 {
-    font-size: 34px;
-    line-height: 1.05;
-    letter-spacing: -1.4px;
-    margin-top: 34px;
-  }
-
-  .mission-card p {
-    font-size: 20px;
-    line-height: 1.45;
-  }
-
-  .card-top {
-    align-items: center;
-  }
-
-  .category-pill {
-    padding: 10px 16px;
-    font-size: 15px;
-  }
-
-  .stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  .stats div {
-    padding: 18px 12px;
-    border-radius: 22px;
-  }
-
-  .stats strong {
-    font-size: 28px;
-  }
-
-  .reward {
-    font-size: 19px;
-    line-height: 1.35;
-    padding: 18px;
-    border-radius: 22px;
-  }
-
-  .main-btn {
-    width: 100%;
-    padding: 18px 22px;
-    font-size: 21px;
-    border-radius: 999px;
-  }
-
-  .two-columns,
-  .profile-grid,
-  .admin-layout,
-  .mission-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    border-radius: 30px;
-  }
-
-  .spotlight h3 {
-    font-size: 38px;
-  }
-
-  .social-proof {
-    grid-template-columns: 1fr;
-    padding: 18px;
-    border-radius: 32px;
-  }
-
-  .rank {
-    width: 100%;
-    height: auto;
-    min-height: 70px;
-    border-radius: 24px;
-    font-size: 32px;
-  }
-
-  .proof-side-actions {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-
-  .proof-side-actions button,
-  .side-badge {
-    width: 100%;
-    min-height: 74px;
-    border-radius: 22px;
-  }
-
-  .media-frame {
-    border-radius: 24px;
-  }
-
-  .proof-media {
-    border-radius: 24px;
-  }
-
-  .login-card {
-    width: calc(100vw - 28px);
-    padding: 28px;
-    border-radius: 34px;
-  }
-
-  .login-card h1 {
-    font-size: 58px;
-  }
-
-  .login-subtitle {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .app {
-    padding: 24px 18px 110px;
-    max-width: 100%;
+    padding: 18px 18px 125px !important;
     overflow-x: hidden;
   }
 
   .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 26px;
-    padding-top: 8px;
-  }
-
-  .brand {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .brand > div:not(.logo-mark) {
-    display: none;
-  }
-
-  .logo-mark {
-    width: 54px;
-    height: 54px;
-    border-radius: 18px;
-    font-size: 26px;
-    box-shadow: 0 14px 45px rgba(168, 85, 247, 0.28);
-  }
-
-  nav {
-    position: fixed !important;
+    position: relative !important;
     top: auto !important;
-    left: 14px;
-    right: 14px;
-    bottom: calc(14px + env(safe-area-inset-bottom));
-    z-index: 9999;
-
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
-
-    padding: 10px;
-    border-radius: 28px;
-    background: rgba(10, 10, 14, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
-    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.65);
-  }
-
-  nav button {
-    min-width: 0;
-    width: 100%;
-    padding: 13px 8px;
-    border-radius: 22px;
-    font-size: 0;
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  nav button:nth-child(1)::after {
-    content: "🏠";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(2)::after {
-    content: "⚡";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(3)::after {
-    content: "🏆";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(4)::after {
-    content: "👤";
-    font-size: 24px;
-  }
-
-  nav button:nth-child(5),
-  nav button:nth-child(6) {
-    display: none;
-  }
-
-  nav button.active {
-    background: white;
-    color: black;
-    transform: translateY(-4px);
-    box-shadow: 0 14px 45px rgba(255, 255, 255, 0.16);
-  }
-
-  .mission-grid,
-  .profile-grid,
-  .mission-layout,
-  .admin-layout,
-  .two-columns {
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 768px) {
-  .header {
-    display: block !important;
-    margin-bottom: 22px !important;
-    padding-top: 8px !important;
+    z-index: 10 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 24px !important;
+    padding: 10px 0 8px !important;
+    backdrop-filter: none !important;
   }
 
   .brand {
@@ -1488,90 +1177,24 @@ button:disabled {
     display: none !important;
   }
 
-  .header nav,
-  nav {
-    position: fixed !important;
-    top: auto !important;
-    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
-    left: 14px !important;
-    right: 14px !important;
-    width: auto !important;
-    z-index: 999999 !important;
-
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 8px !important;
-
-    padding: 10px !important;
-    margin: 0 !important;
-    border-radius: 28px !important;
-    background: rgba(10, 10, 14, 0.92) !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
-    backdrop-filter: blur(22px) !important;
-    -webkit-backdrop-filter: blur(22px) !important;
-    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7) !important;
+  .logo-mark {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 18px !important;
+    font-size: 26px !important;
   }
 
-  .header nav button,
-  nav button {
-    min-width: 0 !important;
-    width: 100% !important;
-    padding: 13px 8px !important;
-    border-radius: 22px !important;
-    font-size: 0 !important;
-  }
-
-  .header nav button:nth-child(1)::after,
-  nav button:nth-child(1)::after {
-    content: "🏠";
-    font-size: 24px;
-  }
-
-  .header nav button:nth-child(2)::after,
-  nav button:nth-child(2)::after {
-    content: "⚡";
-    font-size: 24px;
-  }
-
-  .header nav button:nth-child(3)::after,
-  nav button:nth-child(3)::after {
-    content: "🏆";
-    font-size: 24px;
-  }
-
-  .header nav button:nth-child(4)::after,
-  nav button:nth-child(4)::after {
-    content: "👤";
-    font-size: 24px;
-  }
-
-  .header nav button:nth-child(5),
-  .header nav button:nth-child(6),
-  nav button:nth-child(5),
-  nav button:nth-child(6) {
+  .top-nav {
     display: none !important;
   }
 
-  .header nav button.active,
-  nav button.active {
-    background: white !important;
-    color: black !important;
-    transform: translateY(-4px) !important;
-  }
-
-  .app {
-    padding-bottom: 120px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .top-nav {
+  .mobile-nav {
     position: fixed !important;
-    top: unset !important;
-    bottom: 18px !important;
+    top: auto !important;
     left: 18px !important;
     right: 18px !important;
-    width: calc(100vw - 36px) !important;
+    bottom: calc(14px + env(safe-area-inset-bottom)) !important;
+    width: auto !important;
     height: 72px !important;
     z-index: 999999 !important;
 
@@ -1581,81 +1204,6 @@ button:disabled {
 
     padding: 8px !important;
     margin: 0 !important;
-
-    background: rgba(10, 10, 14, 0.94) !important;
-    border: 1px solid rgba(255, 255, 255, 0.14) !important;
-    border-radius: 999px !important;
-    backdrop-filter: blur(24px) !important;
-    -webkit-backdrop-filter: blur(24px) !important;
-    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.7) !important;
-  }
-
-  .top-nav button {
-    width: 100% !important;
-    height: 56px !important;
-    min-width: 0 !important;
-    padding: 0 !important;
-    border-radius: 999px !important;
-    font-size: 0 !important;
-  }
-
-  .top-nav button:nth-child(1)::after {
-    content: "🏠";
-    font-size: 24px;
-  }
-
-  .top-nav button:nth-child(2)::after {
-    content: "⚡";
-    font-size: 24px;
-  }
-
-  .top-nav button:nth-child(3)::after {
-    content: "🏆";
-    font-size: 24px;
-  }
-
-  .top-nav button:nth-child(4)::after {
-    content: "👤";
-    font-size: 24px;
-  }
-
-  .top-nav button:nth-child(5),
-  .top-nav button:nth-child(6) {
-    display: none !important;
-  }
-
-  .top-nav button.active {
-    background: white !important;
-    color: black !important;
-    transform: translateY(-4px) !important;
-  }
-
-  .app {
-    padding-bottom: 120px !important;
-  }
-}
-
-.mobile-nav {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .top-nav {
-    display: none !important;
-  }
-
-  .mobile-nav {
-    position: fixed !important;
-    left: 18px !important;
-    right: 18px !important;
-    bottom: calc(16px + env(safe-area-inset-bottom)) !important;
-    z-index: 999999 !important;
-
-    display: grid !important;
-    grid-template-columns: repeat(4, 1fr) !important;
-    gap: 8px !important;
-
-    padding: 9px !important;
     border-radius: 999px !important;
     background: rgba(10, 10, 14, 0.94) !important;
     border: 1px solid rgba(255, 255, 255, 0.14) !important;
@@ -1665,23 +1213,91 @@ button:disabled {
   }
 
   .mobile-nav button {
+    width: 100% !important;
     height: 56px !important;
+    min-width: 0 !important;
+    padding: 0 !important;
     border-radius: 999px !important;
     font-size: 24px !important;
-    padding: 0 !important;
-    min-width: 0 !important;
     background: rgba(255, 255, 255, 0.06) !important;
     color: white !important;
+    box-shadow: none !important;
   }
 
   .mobile-nav button.active {
     background: white !important;
     color: black !important;
-    transform: translateY(-4px);
-    box-shadow: 0 14px 45px rgba(255, 255, 255, 0.18);
+    transform: translateY(-4px) !important;
+    box-shadow: 0 14px 45px rgba(255, 255, 255, 0.18) !important;
   }
 
-  .app {
-    padding-bottom: 125px !important;
+  .mission-grid,
+  .two-columns,
+  .mission-layout,
+  .profile-grid,
+  .admin-layout {
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+  }
+
+  .mission-card {
+    min-height: auto !important;
+    padding: 24px !important;
+    border-radius: 34px !important;
+  }
+
+  .mission-card h2 {
+    font-size: 32px !important;
+    line-height: 1.05 !important;
+    letter-spacing: -1px !important;
+  }
+
+  .mission-card p {
+    font-size: 18px !important;
+    line-height: 1.45 !important;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .main-btn {
+    width: 100% !important;
+    padding: 18px 22px !important;
+    font-size: 20px !important;
+    border-radius: 999px !important;
+  }
+
+  .social-proof {
+    grid-template-columns: 1fr !important;
+    padding: 18px !important;
+    border-radius: 32px !important;
+  }
+
+  .proof-side-actions {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .proof-side-actions button,
+  .side-badge {
+    width: 100% !important;
+    min-height: 74px !important;
+    border-radius: 22px !important;
+  }
+
+  .login-card {
+    width: calc(100vw - 28px) !important;
+    padding: 28px !important;
+    border-radius: 34px !important;
+  }
+
+  .login-card h1 {
+    font-size: 56px !important;
+  }
+
+  .login-subtitle {
+    font-size: 19px !important;
   }
 }
