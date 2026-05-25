@@ -1365,3 +1365,107 @@ button:disabled {
     font-size: 20px;
   }
 }
+
+@media (max-width: 768px) {
+  .app {
+    padding: 24px 18px 110px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 26px;
+    padding-top: 8px;
+  }
+
+  .brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .brand > div:not(.logo-mark) {
+    display: none;
+  }
+
+  .logo-mark {
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
+    font-size: 26px;
+    box-shadow: 0 14px 45px rgba(168, 85, 247, 0.28);
+  }
+
+  nav {
+    position: fixed !important;
+    top: auto !important;
+    left: 14px;
+    right: 14px;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    z-index: 9999;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+
+    padding: 10px;
+    border-radius: 28px;
+    background: rgba(10, 10, 14, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    box-shadow: 0 20px 70px rgba(0, 0, 0, 0.65);
+  }
+
+  nav button {
+    min-width: 0;
+    width: 100%;
+    padding: 13px 8px;
+    border-radius: 22px;
+    font-size: 0;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  nav button:nth-child(1)::after {
+    content: "🏠";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(2)::after {
+    content: "⚡";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(3)::after {
+    content: "🏆";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(4)::after {
+    content: "👤";
+    font-size: 24px;
+  }
+
+  nav button:nth-child(5),
+  nav button:nth-child(6) {
+    display: none;
+  }
+
+  nav button.active {
+    background: white;
+    color: black;
+    transform: translateY(-4px);
+    box-shadow: 0 14px 45px rgba(255, 255, 255, 0.16);
+  }
+
+  .mission-grid,
+  .profile-grid,
+  .mission-layout,
+  .admin-layout,
+  .two-columns {
+    margin-top: 0;
+  }
+}
