@@ -988,7 +988,7 @@ async function deleteComment(commentId) {
           </button>
         </nav>
       </header>
-      
+
     <nav className="mobile-nav">
   <button onClick={() => setTab("home")} className={tab === "home" ? "active" : ""}>
     🏠
@@ -1047,7 +1047,7 @@ async function deleteComment(commentId) {
                 <div className="reward">👑 {mission.reward}</div>
 
                 <button className="main-btn" onClick={() => openMission(mission.id)}>
-                  Join Mission
+                  Mission starten
                 </button>
               </div>
             ))}
@@ -1438,7 +1438,7 @@ async function deleteComment(commentId) {
         <input
           value={newMissionReward}
           onChange={(e) => setNewMissionReward(e.target.value)}
-          placeholder="Reward, z.B. Platz 1 bekommt Spotlight"
+          placeholder="Reward, z.B. 👑 Platz 1 wird 24h gefeatured und darf die nächste Mission bestimmen."
         />
 
         <input

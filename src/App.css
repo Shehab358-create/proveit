@@ -1301,3 +1301,143 @@ button:disabled {
     font-size: 19px !important;
   }
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(168, 85, 247, 0.22), transparent 28%),
+    radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.18), transparent 26%),
+    radial-gradient(circle at 50% 90%, rgba(245, 158, 11, 0.14), transparent 30%);
+  animation: ambientGlow 9s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGlow {
+  from {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+.card,
+.mission-card,
+.social-proof {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::after,
+.mission-card::after,
+.social-proof::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.12),
+      transparent 32%,
+      rgba(255, 255, 255, 0.04)
+    );
+  opacity: 0.65;
+}
+
+.mission-card,
+.card,
+.social-proof {
+  border-color: rgba(255, 255, 255, 0.11);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.mission-card {
+  transform: translateZ(0);
+}
+
+.mission-card h2 {
+  background: linear-gradient(135deg, #ffffff, #d8b4fe, #67e8f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mission-card .main-btn {
+  background:
+    linear-gradient(135deg, #ffffff, #f4f4f5);
+  color: #050507;
+  box-shadow:
+    0 16px 42px rgba(255, 255, 255, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.mission-card .main-btn:active {
+  transform: scale(0.97);
+}
+
+.category-pill {
+  background:
+    linear-gradient(135deg, rgba(168, 85, 247, 0.28), rgba(34, 211, 238, 0.16));
+}
+
+@media (max-width: 768px) {
+  .app {
+    padding-top: 14px !important;
+  }
+
+  .mission-grid {
+    gap: 22px !important;
+  }
+
+  .mission-card {
+    min-height: 520px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    padding: 26px !important;
+  }
+
+  .mission-card h2 {
+    font-size: 38px !important;
+    text-align: center;
+    margin: 36px 0 12px !important;
+  }
+
+  .mission-card p {
+    text-align: center;
+    font-size: 19px !important;
+    color: rgba(255, 255, 255, 0.82) !important;
+  }
+
+  .reward {
+    text-align: center;
+    background:
+      linear-gradient(135deg, rgba(245, 158, 11, 0.16), rgba(168, 85, 247, 0.14)),
+      rgba(0, 0, 0, 0.38) !important;
+    border-color: rgba(245, 158, 11, 0.22) !important;
+  }
+
+  .card-top {
+    font-size: 16px !important;
+  }
+
+  .stats div {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.055)) !important;
+  }
+
+  .mobile-nav {
+    background:
+      linear-gradient(135deg, rgba(24, 24, 27, 0.96), rgba(15, 23, 42, 0.92)) !important;
+  }
+}
