@@ -1009,46 +1009,84 @@ async function deleteComment(commentId) {
 
       {tab === "home" && (
         <>
-<section className="home-hero">
-  <div className="hero-live-pill">
-    <span className="pulse-dot"></span>
-    Live
+<section className="live-home-header">
+  <div>
+    <span className="live-dot"></span>
+    Heute live
   </div>
 
-  <h2>
-    Beweis es. <br />
-    Nicht nur zuschauen.
-  </h2>
-
-  <p>Mach mit. Poste Proof. Gewinne Spotlight.</p>
-
-  <div className="hero-stats-row">
-    <div>
-      <strong>{missions.length}</strong>
-      <span>aktive Missionen</span>
-    </div>
-
-    <div>
-      <strong>
-        {missions
-          .reduce((sum, mission) => sum + Number(mission.participants || 0), 0)
-          .toLocaleString("de-DE")}
-      </strong>
-      <span>Teilnehmer</span>
-    </div>
-
-    <div>
-      <strong>{proofs.length}</strong>
-      <span>Proofs</span>
-    </div>
-  </div>
-
-  {missions[0] && (
-    <button className="hero-cta" onClick={() => openMission(missions[0].id)}>
-      🔥 Starten
-    </button>
-  )}
+  <strong>{proofs.length} Proofs</strong>
 </section>
+
+{proofs.length > 0 ? (
+  <section className="home-proof-feed">
+    {proofs.slice(0, 5).map((proof) => {
+      const relatedMission = missions.find(
+        (mission) => mission.id === proof.missionId
+      );
+
+      return (
+        <article className="home-proof-card" key={proof.id}>
+          <div className="home-proof-media">
+            {proof.mediaUrl ? (
+              proof.mediaType?.startsWith("video") ? (
+                <video src={proof.mediaUrl} controls />
+              ) : (
+                <img src={proof.mediaUrl} alt="Proof" />
+              )
+            ) : (
+              <div className="home-proof-empty">
+                <span>⚡</span>
+                <p>Text-Proof</p>
+              </div>
+            )}
+          </div>
+
+          <div className="home-proof-overlay">
+            <div>
+              <p className="home-proof-mission">
+                {relatedMission?.title || "Live Mission"}
+              </p>
+              <h2>{proof.user}</h2>
+              <p className="home-proof-caption">“{proof.caption}”</p>
+            </div>
+
+            <div className="home-proof-actions">
+              <button
+                onClick={() => vote(proof.id)}
+                className={votedProofIds.includes(proof.id) ? "voted" : ""}
+              >
+                🔥
+                <span>{proof.votes.toLocaleString("de-DE")}</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setActiveMissionId(proof.missionId);
+                  setTab("mission");
+                }}
+              >
+                ⚡
+                <span>Mitmachen</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </section>
+) : (
+  <section className="empty-live-feed card">
+    <h2>Noch keine Proofs</h2>
+    <p>Starte die erste Mission und werde als Erster gefeatured.</p>
+
+    {missions[0] && (
+      <button className="main-btn" onClick={() => openMission(missions[0].id)}>
+        Erste Mission starten
+      </button>
+    )}
+  </section>
+)}
 
         {isLoadingMissions && (
   <div className="card status-card">
@@ -1061,7 +1099,7 @@ async function deleteComment(commentId) {
     {supabaseError}
   </div>
 )}
-          <section className="mission-grid">
+          <section className="mission-grid desktop-missions">
             {missions.map((mission) => (
               <div className="card mission-card" key={mission.id}>
                 <div className="card-top">
