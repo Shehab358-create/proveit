@@ -2757,3 +2757,63 @@ body::before {
     pointer-events: auto !important;
   }
 }
+
+@media (max-width: 768px) {
+  .app.home-mode .reels-top-bar {
+    pointer-events: auto !important;
+  }
+
+  .app.home-mode .reels-top-bar button,
+  .app.home-mode .top-tabs,
+  .app.home-mode .top-tabs button,
+  .app.home-mode .search-btn {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+  }
+
+  .app.home-mode .home-proof-overlay {
+    pointer-events: none !important;
+  }
+
+  .app.home-mode .home-proof-meta {
+    pointer-events: none !important;
+  }
+
+  .app.home-mode .home-proof-actions {
+    pointer-events: auto !important;
+    z-index: 9999 !important;
+    position: relative !important;
+  }
+
+  .app.home-mode .home-proof-actions button {
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    position: relative !important;
+    z-index: 10000 !important;
+  }
+
+  .app.home-mode .mobile-nav,
+  .app.home-mode .mobile-nav button {
+    pointer-events: auto !important;
+  }
+
+  .app.home-mode .home-proof-media,
+  .app.home-mode .home-proof-shade {
+    pointer-events: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .app.home-mode .home-proof-card {
+    pointer-events: none !important;
+  }
+
+  .app.home-mode .home-proof-actions,
+  .app.home-mode .home-proof-actions *,
+  .app.home-mode .reels-top-bar,
+  .app.home-mode .reels-top-bar *,
+  .app.home-mode .mobile-nav,
+  .app.home-mode .mobile-nav * {
+    pointer-events: auto !important;
+  }
+}
