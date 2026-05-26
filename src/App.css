@@ -2945,3 +2945,55 @@ body::before {
     font-weight: 900 !important;
   }
 }
+
+@media (max-width: 768px) {
+  .comments-sheet {
+    min-height: 38dvh !important;
+    max-height: 66dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .comments-sheet-list {
+    flex: 1 !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+    padding-bottom: 10px !important;
+  }
+
+  .sheet-comment {
+    display: block !important;
+    padding: 14px 16px !important;
+  }
+
+  .sheet-comment div {
+    display: flex !important;
+    align-items: baseline !important;
+    gap: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .sheet-comment p {
+    display: block !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    font-size: 15px !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+  }
+
+  .sheet-comment button {
+    margin-top: 10px !important;
+    width: auto !important;
+  }
+
+  .comments-sheet-form {
+    position: sticky !important;
+    bottom: 0 !important;
+    padding-top: 10px !important;
+    background: linear-gradient(
+      to top,
+      rgba(14, 14, 18, 1),
+      rgba(14, 14, 18, 0.88)
+    ) !important;
+  }
+}
