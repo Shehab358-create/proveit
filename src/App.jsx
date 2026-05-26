@@ -134,6 +134,8 @@ const [authHandle, setAuthHandle] = useState("");
 const [authError, setAuthError] = useState("");
 const [authLoading, setAuthLoading] = useState(false);
 const [activeCommentsProofId, setActiveCommentsProofId] = useState(null);
+const [likedCommentIds, setLikedCommentIds] = useState([]);
+const [replyingToCommentId, setReplyingToCommentId] = useState(null);
 
  useEffect(() => {
   async function loadComments() {
@@ -930,6 +932,127 @@ async function deleteComment(commentId) {
   setComments(comments.filter((comment) => comment.id !== commentId));
 }
 
+async function toggleCommentLike(commentId) {
+  if (!user) {
+    alert("Bitte einloggen, um Kommentare zu liken.");
+    return;
+  }
+
+  const comment = comments.find((item) => item.id === commentId);
+  if (!comment) return;
+
+  const hasLiked = likedCommentIds.includes(commentId);
+  const oldLikes = Number(comment.likes || 0);
+  const newLikes = hasLiked ? Math.max(0, oldLikes - 1) : oldLikes + 1;
+
+  setComments((oldComments) =>
+    oldComments.map((item) =>
+      item.id === commentId ? { ...item, likes: newLikes } : item
+    )
+  );
+
+  setLikedCommentIds((oldIds) =>
+    hasLiked
+      ? oldIds.filter((id) => id !== commentId)
+      : [...oldIds, commentId]
+  );
+
+  if (hasLiked) {
+    const { error } = await supabase
+      .from("comment_likes")
+      .delete()
+      .eq("comment_id", commentId)
+      .eq("user_id", user.id);
+
+    if (error) {
+      console.error("Unlike comment error:", error);
+      return;
+    }
+  } else {
+    const { error } = await supabase.from("comment_likes").insert([
+      {
+        comment_id: commentId,
+        user_id: user.id,
+      },
+    ]);
+
+    if (error) {
+      console.error("Like comment error:", error);
+      return;
+    }
+  }
+
+  const { error: updateError } = await supabase
+    .from("comments")
+    .update({ likes: newLikes })
+    .eq("id", commentId);
+
+  if (updateError) {
+    console.error("Update comment likes error:", updateError);
+  }
+}
+
+async function postReply(proofId, parentCommentId) {
+  if (!user) {
+    alert("Bitte einloggen, um zu antworten.");
+    return;
+  }
+
+  const text = commentInputs[`reply-${parentCommentId}`]?.trim();
+  if (!text) return;
+
+  setIsPostingComment(true);
+
+  const newReply = {
+    proof_id: proofId,
+    parent_comment_id: parentCommentId,
+    user_id: user.id,
+    user: playerName || "Player",
+    handle: playerHandle || "@player",
+    text,
+    likes: 0,
+  };
+
+  const { data, error } = await supabase
+    .from("comments")
+    .insert([newReply])
+    .select()
+    .single();
+
+  setIsPostingComment(false);
+
+  if (error) {
+    console.error("Post reply error:", error);
+    alert("Antwort konnte nicht gesendet werden.");
+    return;
+  }
+
+  setComments((oldComments) => [...oldComments, data]);
+
+  setCommentInputs({
+    ...commentInputs,
+    [`reply-${parentCommentId}`]: "",
+  });
+
+  setReplyingToCommentId(null);
+}
+
+function getTopLevelComments(proofId) {
+  return comments.filter(
+    (comment) =>
+      (comment.proofId === proofId || comment.proof_id === proofId) &&
+      !(comment.parentCommentId || comment.parent_comment_id)
+  );
+}
+
+function getCommentReplies(commentId) {
+  return comments.filter(
+    (comment) =>
+      comment.parentCommentId === commentId ||
+      comment.parent_comment_id === commentId
+  );
+}
+
   async function postProof() {
   if (!activeMission || activeMissionEnded) return;
   if (!caption.trim() && !selectedFile) return;
@@ -1211,36 +1334,95 @@ async function deleteComment(commentId) {
       </div>
 
       <div className="comments-sheet-list">
-        {getProofComments(activeCommentsProofId).length === 0 && (
+        {getTopLevelComments(activeCommentsProofId).length === 0 && (
           <p className="empty-comments">Noch keine Kommentare. Sei der Erste.</p>
         )}
 
-        {getProofComments(activeCommentsProofId).map((comment) => (
-          <div className="comment-item sheet-comment" key={comment.id}>
-  <div className="comment-avatar">
-    {(comment.user || "P").charAt(0).toUpperCase()}
-  </div>
+        {getTopLevelComments(activeCommentsProofId).map((comment) => (
+  <div className="comment-thread" key={comment.id}>
+    <div className="comment-item sheet-comment">
+      <div className="comment-avatar">
+        {(comment.user || "P").charAt(0).toUpperCase()}
+      </div>
 
-  <div className="comment-body">
-    <div className="comment-topline">
-      <strong>{comment.user}</strong>
-      <span>{comment.handle}</span>
-    </div>
+      <div className="comment-body">
+        <div className="comment-topline">
+          <strong>{comment.user}</strong>
+          <span>{comment.handle}</span>
+        </div>
 
-    <p>{comment.text}</p>
+        <p>{comment.text}</p>
 
-    {comment.userId === user?.id && (
-      <button
-        type="button"
-        className="delete-comment-btn"
-        onClick={() => deleteComment(comment.id)}
-      >
-        Löschen
-      </button>
-    )}
-  </div>
-</div>
+        <div className="comment-actions-row">
+          <button
+            type="button"
+            onClick={() => toggleCommentLike(comment.id)}
+            className={likedCommentIds.includes(comment.id) ? "liked-comment" : ""}
+          >
+            ❤️ {comment.likes || 0}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setReplyingToCommentId(comment.id)}
+          >
+            Antworten
+          </button>
+
+          {comment.userId === user?.id && (
+            <button
+              type="button"
+              className="delete-comment-btn"
+              onClick={() => deleteComment(comment.id)}
+            >
+              Löschen
+            </button>
+          )}
+        </div>
+
+        {replyingToCommentId === comment.id && (
+          <div className="reply-form">
+            <input
+              value={commentInputs[`reply-${comment.id}`] || ""}
+              onChange={(e) =>
+                setCommentInputs({
+                  ...commentInputs,
+                  [`reply-${comment.id}`]: e.target.value,
+                })
+              }
+              placeholder={`Antwort an ${comment.user}...`}
+            />
+
+            <button
+              type="button"
+              onClick={() => postReply(activeCommentsProofId, comment.id)}
+              disabled={isPostingComment}
+            >
+              Senden
+            </button>
+          </div>
+        )}
+
+        {getCommentReplies(comment.id).map((reply) => (
+          <div className="reply-item" key={reply.id}>
+            <div className="comment-avatar reply-avatar">
+              {(reply.user || "P").charAt(0).toUpperCase()}
+            </div>
+
+            <div>
+              <div className="comment-topline">
+                <strong>{reply.user}</strong>
+                <span>{reply.handle}</span>
+              </div>
+
+              <p>{reply.text}</p>
+            </div>
+          </div>
         ))}
+      </div>
+    </div>
+  </div>
+))}
       </div>
 
       <div className="comments-sheet-form">
