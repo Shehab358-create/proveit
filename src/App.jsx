@@ -133,6 +133,7 @@ const [authName, setAuthName] = useState("");
 const [authHandle, setAuthHandle] = useState("");
 const [authError, setAuthError] = useState("");
 const [authLoading, setAuthLoading] = useState(false);
+const [activeCommentsProofId, setActiveCommentsProofId] = useState(null);
 
  useEffect(() => {
   async function loadComments() {
@@ -1135,13 +1136,9 @@ async function deleteComment(commentId) {
   <button
   type="button"
   onClick={(e) => {
+    e.preventDefault();
     e.stopPropagation();
-    setActiveMissionId(proof.missionId);
-    setTab("mission");
-    setOpenComments({
-      ...openComments,
-      [proof.id]: true,
-    });
+    setActiveCommentsProofId(proof.id);
   }}
 >
   💬
@@ -1191,6 +1188,77 @@ async function deleteComment(commentId) {
         )}
       </section>
     )}
+
+    {activeCommentsProofId && (
+  <div
+    className="comments-backdrop"
+    onClick={() => setActiveCommentsProofId(null)}
+  >
+    <section
+      className="comments-sheet"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="comments-sheet-handle"></div>
+
+      <div className="comments-sheet-header">
+        <h3>Kommentare</h3>
+        <button
+          type="button"
+          onClick={() => setActiveCommentsProofId(null)}
+        >
+          ✕
+        </button>
+      </div>
+
+      <div className="comments-sheet-list">
+        {getProofComments(activeCommentsProofId).length === 0 && (
+          <p className="empty-comments">Noch keine Kommentare. Sei der Erste.</p>
+        )}
+
+        {getProofComments(activeCommentsProofId).map((comment) => (
+          <div className="comment-item sheet-comment" key={comment.id}>
+            <div>
+              <strong>{comment.user}</strong>
+              <span>{comment.handle}</span>
+            </div>
+
+            <p>{comment.text}</p>
+
+            {comment.userId === user?.id && (
+              <button
+                type="button"
+                onClick={() => deleteComment(comment.id)}
+              >
+                Löschen
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="comments-sheet-form">
+        <input
+          value={commentInputs[activeCommentsProofId] || ""}
+          onChange={(e) =>
+            setCommentInputs({
+              ...commentInputs,
+              [activeCommentsProofId]: e.target.value,
+            })
+          }
+          placeholder="Kommentar schreiben..."
+        />
+
+        <button
+          type="button"
+          onClick={() => postComment(activeCommentsProofId)}
+          disabled={isPostingComment}
+        >
+          Senden
+        </button>
+      </div>
+    </section>
+  </div>
+)}
   </section>
 )}
  

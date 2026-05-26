@@ -2817,3 +2817,131 @@ body::before {
     pointer-events: auto !important;
   }
 }
+
+@media (max-width: 768px) {
+  .comments-backdrop {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 99999999 !important;
+    background: rgba(0, 0, 0, 0.38) !important;
+    display: flex !important;
+    align-items: flex-end !important;
+    pointer-events: auto !important;
+  }
+
+  .comments-sheet {
+    width: 100% !important;
+    max-height: 72dvh !important;
+    min-height: 46dvh !important;
+    padding: 10px 16px calc(16px + env(safe-area-inset-bottom)) !important;
+    border-radius: 28px 28px 0 0 !important;
+    background: rgba(14, 14, 18, 0.98) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: 0 -30px 80px rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(22px) !important;
+    -webkit-backdrop-filter: blur(22px) !important;
+    pointer-events: auto !important;
+  }
+
+  .comments-sheet-handle {
+    width: 46px !important;
+    height: 5px !important;
+    border-radius: 999px !important;
+    margin: 0 auto 12px !important;
+    background: rgba(255, 255, 255, 0.28) !important;
+  }
+
+  .comments-sheet-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 12px !important;
+  }
+
+  .comments-sheet-header h3 {
+    margin: 0 !important;
+    font-size: 20px !important;
+  }
+
+  .comments-sheet-header button {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: white !important;
+  }
+
+  .comments-sheet-list {
+    max-height: 42dvh !important;
+    overflow-y: auto !important;
+    padding-right: 4px !important;
+    display: grid !important;
+    gap: 10px !important;
+  }
+
+  .sheet-comment {
+    padding: 12px !important;
+    border-radius: 18px !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .sheet-comment div {
+    display: flex !important;
+    gap: 8px !important;
+    align-items: center !important;
+    margin-bottom: 6px !important;
+  }
+
+  .sheet-comment strong {
+    font-size: 14px !important;
+  }
+
+  .sheet-comment span {
+    font-size: 13px !important;
+    color: rgba(255, 255, 255, 0.54) !important;
+  }
+
+  .sheet-comment p {
+    margin: 0 !important;
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+  }
+
+  .sheet-comment button {
+    margin-top: 8px !important;
+    padding: 7px 10px !important;
+    border-radius: 999px !important;
+    font-size: 12px !important;
+  }
+
+  .empty-comments {
+    text-align: center !important;
+    color: rgba(255, 255, 255, 0.58) !important;
+    margin: 24px 0 !important;
+  }
+
+  .comments-sheet-form {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 10px !important;
+    margin-top: 12px !important;
+  }
+
+  .comments-sheet-form input {
+    width: 100% !important;
+    border-radius: 999px !important;
+    padding: 14px 16px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .comments-sheet-form button {
+    border-radius: 999px !important;
+    padding: 0 18px !important;
+    background: white !important;
+    color: black !important;
+    font-weight: 900 !important;
+  }
+}
