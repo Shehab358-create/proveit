@@ -726,11 +726,6 @@ async function saveProfile() {
     return;
   }
 
-  if (votedProofIds.includes(id)) {
-    alert("Du hast für diesen Proof schon gevotet.");
-    return;
-  }
-
   const proof = proofs.find((item) => item.id === id);
 
   if (!proof) {
@@ -743,45 +738,67 @@ async function saveProfile() {
     return;
   }
 
+  const hasVoted = votedProofIds.includes(id);
   const oldVoteCount = Number(proof.votes || 0);
-  const newVoteCount = oldVoteCount + 1;
+  const newVoteCount = hasVoted
+    ? Math.max(0, oldVoteCount - 1)
+    : oldVoteCount + 1;
 
-  // Sofort im UI anzeigen
   setProofs((oldProofs) =>
     oldProofs.map((item) =>
       item.id === id ? { ...item, votes: newVoteCount } : item
     )
   );
 
-  setVotedProofIds((oldIds) => [...oldIds, id]);
+  setVotedProofIds((oldIds) =>
+    hasVoted
+      ? oldIds.filter((voteId) => voteId !== id)
+      : [...oldIds, id]
+  );
 
-  const { error: voteError } = await supabase.from("votes").insert([
-    {
-      user_id: user.id,
-      proof_id: id,
-    },
-  ]);
+  if (hasVoted) {
+    const { error: deleteVoteError } = await supabase
+      .from("votes")
+      .delete()
+      .eq("user_id", user.id)
+      .eq("proof_id", id);
 
-  if (voteError) {
-    console.error("Create vote error:", voteError);
+    if (deleteVoteError) {
+      console.error("Delete vote error:", deleteVoteError);
 
-    // Wenn schon gevotet wurde, UI so lassen
-    if (voteError.code === "23505") {
-      alert("Du hast für diesen Proof schon gevotet.");
+      setProofs((oldProofs) =>
+        oldProofs.map((item) =>
+          item.id === id ? { ...item, votes: oldVoteCount } : item
+        )
+      );
+
+      setVotedProofIds((oldIds) => [...oldIds, id]);
+
+      alert("Vote konnte nicht zurückgenommen werden.");
       return;
     }
+  } else {
+    const { error: voteError } = await supabase.from("votes").insert([
+      {
+        user_id: user.id,
+        proof_id: id,
+      },
+    ]);
 
-    // Rollback, falls Speichern fehlschlägt
-    setProofs((oldProofs) =>
-      oldProofs.map((item) =>
-        item.id === id ? { ...item, votes: oldVoteCount } : item
-      )
-    );
+    if (voteError) {
+      console.error("Create vote error:", voteError);
 
-    setVotedProofIds((oldIds) => oldIds.filter((voteId) => voteId !== id));
+      setProofs((oldProofs) =>
+        oldProofs.map((item) =>
+          item.id === id ? { ...item, votes: oldVoteCount } : item
+        )
+      );
 
-    alert("Vote konnte nicht gespeichert werden.");
-    return;
+      setVotedProofIds((oldIds) => oldIds.filter((voteId) => voteId !== id));
+
+      alert("Vote konnte nicht gespeichert werden.");
+      return;
+    }
   }
 
   const { error: proofError } = await supabase
@@ -791,7 +808,7 @@ async function saveProfile() {
 
   if (proofError) {
     console.error("Vote count update error:", proofError);
-    alert("Vote wurde gespeichert, aber die Vote-Zahl konnte nicht aktualisiert werden.");
+    alert("Vote wurde geändert, aber die Vote-Zahl konnte nicht aktualisiert werden.");
   }
 }
 
