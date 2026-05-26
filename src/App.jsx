@@ -1217,22 +1217,29 @@ async function deleteComment(commentId) {
 
         {getProofComments(activeCommentsProofId).map((comment) => (
           <div className="comment-item sheet-comment" key={comment.id}>
-            <div>
-              <strong>{comment.user}</strong>
-              <span>{comment.handle}</span>
-            </div>
+  <div className="comment-avatar">
+    {(comment.user || "P").charAt(0).toUpperCase()}
+  </div>
 
-            <p>{comment.text}</p>
+  <div className="comment-body">
+    <div className="comment-topline">
+      <strong>{comment.user}</strong>
+      <span>{comment.handle}</span>
+    </div>
 
-            {comment.userId === user?.id && (
-              <button
-                type="button"
-                onClick={() => deleteComment(comment.id)}
-              >
-                Löschen
-              </button>
-            )}
-          </div>
+    <p>{comment.text}</p>
+
+    {comment.userId === user?.id && (
+      <button
+        type="button"
+        className="delete-comment-btn"
+        onClick={() => deleteComment(comment.id)}
+      >
+        Löschen
+      </button>
+    )}
+  </div>
+</div>
         ))}
       </div>
 
