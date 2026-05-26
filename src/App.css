@@ -3261,3 +3261,74 @@ body::before {
     color: rgba(255, 255, 255, 0.88) !important;
   }
 }
+
+@media (max-width: 768px) {
+  .comment-content-row {
+    display: grid !important;
+    grid-template-columns: 1fr 44px !important;
+    gap: 10px !important;
+    align-items: start !important;
+  }
+
+  .comment-text-area {
+    min-width: 0 !important;
+  }
+
+  .comment-text-area p {
+    margin: 0 !important;
+    font-size: 15px !important;
+    line-height: 1.35 !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-align: left !important;
+  }
+
+  .comment-like-side {
+    width: 40px !important;
+    min-height: 46px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 2px !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+  }
+
+  .comment-like-side span {
+    font-size: 20px !important;
+    line-height: 1 !important;
+  }
+
+  .comment-like-side small {
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    color: rgba(255, 255, 255, 0.62) !important;
+  }
+
+  .comment-like-side.liked-comment span,
+  .comment-like-side.liked-comment small {
+    color: #fb7185 !important;
+  }
+
+  .comment-actions-row {
+    display: flex !important;
+    gap: 12px !important;
+    margin-top: 7px !important;
+  }
+
+  .comment-actions-row button {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    color: rgba(255, 255, 255, 0.48) !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+  }
+
+  .comment-actions-row .delete-comment-btn {
+    color: rgba(248, 113, 113, 0.95) !important;
+  }
+}

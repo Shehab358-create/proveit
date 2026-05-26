@@ -1004,14 +1004,14 @@ async function postReply(proofId, parentCommentId) {
   setIsPostingComment(true);
 
   const newReply = {
-    proof_id: proofId,
-    parent_comment_id: parentCommentId,
-    user_id: user.id,
-    user: playerName || "Player",
-    handle: playerHandle || "@player",
-    text,
-    likes: 0,
-  };
+  proof_id: proofId,
+  parent_comment_id: parentCommentId,
+  user_id: user.id,
+  user: playerName || "Player",
+  handle: playerHandle || "@player",
+  text: text,
+  likes: 0,
+};
 
   const { data, error } = await supabase
     .from("comments")
@@ -1351,34 +1351,41 @@ function getCommentReplies(commentId) {
           <span>{comment.handle}</span>
         </div>
 
-        <p>{comment.text}</p>
+        <div className="comment-content-row">
+  <div className="comment-text-area">
+    <p>{comment.text}</p>
 
-        <div className="comment-actions-row">
-          <button
-            type="button"
-            onClick={() => toggleCommentLike(comment.id)}
-            className={likedCommentIds.includes(comment.id) ? "liked-comment" : ""}
-          >
-            ❤️ {comment.likes || 0}
-          </button>
+    <div className="comment-actions-row">
+      <button
+        type="button"
+        onClick={() => setReplyingToCommentId(comment.id)}
+      >
+        Antworten
+      </button>
 
-          <button
-            type="button"
-            onClick={() => setReplyingToCommentId(comment.id)}
-          >
-            Antworten
-          </button>
+      {comment.userId === user?.id && (
+        <button
+          type="button"
+          className="delete-comment-btn"
+          onClick={() => deleteComment(comment.id)}
+        >
+          Löschen
+        </button>
+      )}
+    </div>
+  </div>
 
-          {comment.userId === user?.id && (
-            <button
-              type="button"
-              className="delete-comment-btn"
-              onClick={() => deleteComment(comment.id)}
-            >
-              Löschen
-            </button>
-          )}
-        </div>
+  <button
+    type="button"
+    className={`comment-like-side ${
+      likedCommentIds.includes(comment.id) ? "liked-comment" : ""
+    }`}
+    onClick={() => toggleCommentLike(comment.id)}
+  >
+    <span>❤️</span>
+    <small>{comment.likes || 0}</small>
+  </button>
+</div>
 
         {replyingToCommentId === comment.id && (
           <div className="reply-form">
