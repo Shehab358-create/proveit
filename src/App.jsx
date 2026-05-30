@@ -1216,7 +1216,10 @@ function getCommentReplies(commentId) {
 
     {proofs.length > 0 ? (
       <section className="home-proof-feed">
-        {proofs.slice(0, 5).map((proof) => {
+        {[...proofs]
+  .sort((a, b) => new Date(b.createdAt || b.created_at) - new Date(a.createdAt || a.created_at))
+  .slice(0, 10)
+  .map((proof) => {
           const relatedMission = missions.find(
             (mission) => mission.id === proof.missionId
           );
