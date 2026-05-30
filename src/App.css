@@ -3397,3 +3397,105 @@ body::before {
     margin-left: 0 !important;
   }
 }
+
+@media (max-width: 768px) {
+  .comments-sheet-list .comment-item.sheet-comment {
+    display: grid !important;
+    grid-template-columns: 52px minmax(0, 1fr) !important;
+    gap: 14px !important;
+    align-items: start !important;
+    padding: 12px 0 !important;
+  }
+
+  .comments-sheet-list .comment-body {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .comments-sheet-list .comment-topline {
+    display: flex !important;
+    gap: 8px !important;
+    align-items: center !important;
+    margin-bottom: 6px !important;
+  }
+
+  .comments-sheet-list .comment-content-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 38px !important;
+    gap: 12px !important;
+    align-items: start !important;
+    width: 100% !important;
+  }
+
+  .comments-sheet-list .comment-text-area {
+    display: block !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .comments-sheet-list .comment-text-area > p {
+    display: block !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    font-size: 16px !important;
+    line-height: 1.3 !important;
+    text-align: left !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .comments-sheet-list .comment-actions-row {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin-top: 8px !important;
+    width: auto !important;
+  }
+
+  .comments-sheet-list .comment-actions-row button {
+    display: inline-flex !important;
+    width: auto !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    color: rgba(255, 255, 255, 0.52) !important;
+  }
+
+  .comments-sheet-list .comment-actions-row .delete-comment-btn {
+    color: rgba(248, 113, 113, 0.95) !important;
+  }
+
+  .comments-sheet-list .comment-like-side {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    justify-self: end !important;
+    width: 34px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .comments-sheet-list .comment-like-side span {
+    font-size: 24px !important;
+    line-height: 1 !important;
+  }
+
+  .comments-sheet-list .comment-like-side small {
+    margin-top: 3px !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+  }
+}
