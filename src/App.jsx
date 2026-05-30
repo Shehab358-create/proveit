@@ -137,6 +137,7 @@ const [activeCommentsProofId, setActiveCommentsProofId] = useState(null);
 const [likedCommentIds, setLikedCommentIds] = useState([]);
 const [replyingToCommentId, setReplyingToCommentId] = useState(null);
 const [toastMessage, setToastMessage] = useState("");
+const [feedTab, setFeedTab] = useState("forYou");
 
  useEffect(() => {
   async function loadComments() {
@@ -1181,26 +1182,30 @@ function getCommentReplies(commentId) {
       <span className="top-brand">⚡ ProveIt</span>
 
       <div className="top-tabs">
-        <button
-  type="button"
-  className="muted-tab"
-  onClick={(e) => {
-    e.stopPropagation();
-    alert("Gefolgt kommt später.");
-  }}
->
-  Gefolgt
-</button>
-        <button
-  type="button"
-  className="active-tab"
-  onClick={(e) => {
-    e.stopPropagation();
-  }}
->
-  Für dich
-</button>
-      </div>
+  <button
+    type="button"
+    className={feedTab === "following" ? "active-tab" : "muted-tab"}
+    onClick={(e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setFeedTab("following");
+    }}
+  >
+    Gefolgt
+  </button>
+
+  <button
+    type="button"
+    className={feedTab === "forYou" ? "active-tab" : "muted-tab"}
+    onClick={(e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setFeedTab("forYou");
+    }}
+  >
+    Für dich
+  </button>
+</div>
 
       <button
   type="button"
@@ -1216,7 +1221,7 @@ function getCommentReplies(commentId) {
 
     {proofs.length > 0 ? (
       <section className="home-proof-feed">
-        {[...proofs]
+        {(feedTab === "following" ? [] : [...proofs])
   .sort((a, b) => new Date(b.createdAt || b.created_at) - new Date(a.createdAt || a.created_at))
   .slice(0, 10)
   .map((proof) => {
@@ -1315,17 +1320,21 @@ function getCommentReplies(commentId) {
       </section>
     ) : (
       <section className="empty-live-feed card">
-        <h2>Noch keine Proofs</h2>
-        <p>Starte die erste Mission und werde als Erster gefeatured.</p>
+        <h2>{feedTab === "following" ? "Noch niemand gefolgt" : "Noch keine Proofs"}</h2>
+        <p>
+  {feedTab === "following"
+    ? "Folgen-Feed kommt als Nächstes. Bis dahin findest du neue Proofs unter Für dich."
+    : "Starte die erste Mission und werde als Erster gefeatured."}
+</p>
 
-        {missions[0] && (
-          <button
-            className="main-btn"
-            onClick={() => openMission(missions[0].id)}
-          >
-            Erste Mission starten
-          </button>
-        )}
+        {feedTab === "forYou" && missions[0] && (
+  <button
+    className="main-btn"
+    onClick={() => openMission(missions[0].id)}
+  >
+    Erste Mission starten
+  </button>
+)}
       </section>
     )}
 
