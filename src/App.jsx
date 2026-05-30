@@ -136,6 +136,7 @@ const [authLoading, setAuthLoading] = useState(false);
 const [activeCommentsProofId, setActiveCommentsProofId] = useState(null);
 const [likedCommentIds, setLikedCommentIds] = useState([]);
 const [replyingToCommentId, setReplyingToCommentId] = useState(null);
+const [toastMessage, setToastMessage] = useState("");
 
  useEffect(() => {
   async function loadComments() {
@@ -813,6 +814,14 @@ async function saveProfile() {
     console.error("Vote count update error:", proofError);
     alert("Vote wurde geändert, aber die Vote-Zahl konnte nicht aktualisiert werden.");
   }
+}
+
+function showToast(message) {
+  setToastMessage(message);
+
+  setTimeout(() => {
+    setToastMessage("");
+  }, 2200);
 }
 
   function handleFileSelect(e) {
