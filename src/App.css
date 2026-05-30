@@ -3499,3 +3499,42 @@ body::before {
     font-weight: 900 !important;
   }
 }
+
+@media (max-width: 768px) {
+  .comments-sheet-list .comment-like-side {
+    width: 32px !important;
+    margin-right: 4px !important;
+  }
+
+  .comments-sheet-list .comment-like-side span {
+    font-size: 21px !important;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45)) !important;
+  }
+
+  .comments-sheet-list .comment-like-side small {
+    font-size: 10px !important;
+    margin-top: 2px !important;
+  }
+
+  .reply-form {
+    margin-top: 14px !important;
+    margin-left: 0 !important;
+    grid-template-columns: 1fr auto !important;
+  }
+
+  .reply-form input {
+    height: 46px !important;
+    font-size: 16px !important;
+  }
+
+  .reply-form button {
+    height: 46px !important;
+    min-width: 96px !important;
+  }
+
+  .comments-sheet:has(.reply-form) .comments-sheet-form {
+    opacity: 0.45 !important;
+    transform: scale(0.98) !important;
+    pointer-events: none !important;
+  }
+}
