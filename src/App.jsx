@@ -1271,6 +1271,7 @@ function getCommentReplies(commentId) {
   <button
   type="button"
   onClick={async (e) => {
+    e.preventDefault();
     e.stopPropagation();
 
     const shareData = {
@@ -1279,11 +1280,15 @@ function getCommentReplies(commentId) {
       url: window.location.href,
     };
 
-    if (navigator.share) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.clipboard.writeText(window.location.href);
-      alert("Link kopiert!");
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        showToast("Link kopiert");
+      }
+    } catch (error) {
+      console.log("Share cancelled or failed:", error);
     }
   }}
 >
@@ -1900,6 +1905,12 @@ function getCommentReplies(commentId) {
       <p className="time">Endet in: {newMissionEndsIn || "24h"}</p>
     </div>
   </section>
+  )}
+
+{toastMessage && (
+  <div className="app-toast">
+    {toastMessage}
+  </div>
 )}
     </div>
   );
