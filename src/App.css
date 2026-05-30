@@ -3566,3 +3566,125 @@ body::before {
     transform: translateX(-50%) translateY(0) scale(1);
   }
 }
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.profile-stat-card {
+  padding: 18px 12px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.profile-stat-card strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 950;
+  color: white;
+}
+
+.profile-stat-card span {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.56);
+  font-weight: 800;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.section-title-row h2 {
+  margin: 0;
+}
+
+.section-title-row span {
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 900;
+}
+
+.muted-text {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.my-proofs-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.my-proof-row {
+  display: grid;
+  grid-template-columns: 58px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.my-proof-thumb {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #8b5cf6, #38bdf8);
+  font-size: 24px;
+}
+
+.my-proof-thumb img,
+.my-proof-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.my-proof-row strong {
+  display: block;
+  font-size: 14px;
+}
+
+.my-proof-row p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.my-proof-votes {
+  font-weight: 900;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .profile-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile-stat-card {
+    padding: 16px 12px;
+  }
+
+  .profile-stat-card strong {
+    font-size: 30px;
+  }
+
+  .my-proof-row {
+    grid-template-columns: 52px 1fr auto;
+  }
+
+  .my-proof-thumb {
+    width: 52px;
+    height: 52px;
+  }
+}

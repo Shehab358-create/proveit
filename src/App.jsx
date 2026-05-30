@@ -1124,6 +1124,32 @@ function getCommentReplies(commentId) {
   setIsUploadingProof(false);
 }
 
+const myProofs = proofs.filter(
+  (proof) => proof.userId === user?.id || proof.user_id === user?.id
+);
+
+const myTotalVotes = myProofs.reduce(
+  (sum, proof) => sum + Number(proof.votes || 0),
+  0
+);
+
+const myActiveProofs = myProofs.filter((proof) => {
+  const relatedMission = missions.find(
+    (mission) => mission.id === proof.missionId
+  );
+
+  if (!relatedMission) return false;
+
+  return !isMissionEnded(relatedMission.endTime);
+});
+
+const profileStats = [
+  { label: "Proofs", value: myProofs.length },
+  { label: "Votes", value: myTotalVotes },
+  { label: "Aktiv", value: myActiveProofs.length },
+  { label: "Streak", value: 3 },
+];
+
   return (
     <div className={`app ${tab === "home" ? "home-mode" : ""}`}>
       <header className="header">
@@ -1775,22 +1801,14 @@ function getCommentReplies(commentId) {
       <p className="handle">{playerHandle || "@newplayer"}</p>
       <p className="profile-email">{user?.email}</p>
 
-      <div className="stats">
-        <div>
-          <strong>{proofs.filter((p) => p.handle === playerHandle).length}</strong>
-          <small>Proofs</small>
-        </div>
-        <div>
-          <strong>
-            {proofs.filter((p) => p.handle === playerHandle && p.votes > 0).length}
-          </strong>
-          <small>Aktive</small>
-        </div>
-        <div>
-          <strong>3</strong>
-          <small>Streak</small>
-        </div>
-      </div>
+      <div className="profile-stats">
+  {profileStats.map((stat) => (
+    <div className="profile-stat-card" key={stat.label}>
+      <strong>{stat.value}</strong>
+      <span>{stat.label}</span>
+    </div>
+  ))}
+</div>
     </div>
 
     <div className="card">
@@ -1826,6 +1844,52 @@ function getCommentReplies(commentId) {
         </button>
       </div>
     </div>
+
+    <section className="card my-proofs-card">
+  <div className="section-title-row">
+    <h2>Meine Proofs</h2>
+    <span>{myProofs.length}</span>
+  </div>
+
+  {myProofs.length === 0 ? (
+    <p className="muted-text">
+      Du hast noch keinen Proof gepostet.
+    </p>
+  ) : (
+    <div className="my-proofs-list">
+      {myProofs.slice(0, 5).map((proof) => {
+        const relatedMission = missions.find(
+          (mission) => mission.id === proof.missionId
+        );
+
+        return (
+          <div className="my-proof-row" key={proof.id}>
+            <div className="my-proof-thumb">
+              {proof.mediaUrl ? (
+                proof.mediaType?.startsWith("video") ? (
+                  <video src={proof.mediaUrl} muted playsInline />
+                ) : (
+                  <img src={proof.mediaUrl} alt="Proof" />
+                )
+              ) : (
+                <span>⚡</span>
+              )}
+            </div>
+
+            <div>
+              <strong>{relatedMission?.title || "Mission"}</strong>
+              <p>“{proof.caption}”</p>
+            </div>
+
+            <span className="my-proof-votes">
+              🔥 {proof.votes || 0}
+            </span>
+          </div>
+        );
+      })}
+    </div>
+  )}
+</section>
 
     <div className="card profile-wide-card">
       <h2>🔥 Trophäen & Power Rewards</h2>
