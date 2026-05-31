@@ -1125,7 +1125,11 @@ function getCommentReplies(commentId) {
 }
 
 const myProofs = proofs.filter(
-  (proof) => proof.userId === user?.id || proof.user_id === user?.id
+  (proof) =>
+    proof.userId === user?.id ||
+    proof.user_id === user?.id ||
+    proof.handle === playerHandle ||
+    proof.user === playerName
 );
 
 const myTotalVotes = myProofs.reduce(
