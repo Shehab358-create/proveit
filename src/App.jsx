@@ -1849,7 +1849,7 @@ const profileStats = [
       </div>
     </div>
 
-    <section className="card my-proofs-card">
+   <section className="card my-proofs-card">
   <div className="section-title-row">
     <h2>Meine Proofs</h2>
     <span>{myProofs.length}</span>
@@ -1860,35 +1860,39 @@ const profileStats = [
       Du hast noch keinen Proof gepostet.
     </p>
   ) : (
-    <div className="my-proofs-list">
-      {myProofs.slice(0, 5).map((proof) => {
+    <div className="profile-proof-grid">
+      {myProofs.slice(0, 9).map((proof) => {
         const relatedMission = missions.find(
           (mission) => mission.id === proof.missionId
         );
 
         return (
-          <div className="my-proof-row" key={proof.id}>
-            <div className="my-proof-thumb">
-              {proof.mediaUrl ? (
-                proof.mediaType?.startsWith("video") ? (
-                  <video src={proof.mediaUrl} muted playsInline />
-                ) : (
-                  <img src={proof.mediaUrl} alt="Proof" />
-                )
+          <button
+            type="button"
+            className="profile-proof-tile"
+            key={proof.id}
+            onClick={() => {
+              setActiveMissionId(proof.missionId);
+              setTab("mission");
+            }}
+          >
+            {proof.mediaUrl ? (
+              proof.mediaType?.startsWith("video") ? (
+                <video src={proof.mediaUrl} muted playsInline />
               ) : (
-                <span>⚡</span>
-              )}
-            </div>
+                <img src={proof.mediaUrl} alt="Proof" />
+              )
+            ) : (
+              <div className="profile-proof-empty">⚡</div>
+            )}
 
-            <div>
+            <div className="profile-proof-gradient"></div>
+
+            <div className="profile-proof-info">
               <strong>{relatedMission?.title || "Mission"}</strong>
-              <p>“{proof.caption}”</p>
+              <span>🔥 {proof.votes || 0}</span>
             </div>
-
-            <span className="my-proof-votes">
-              🔥 {proof.votes || 0}
-            </span>
-          </div>
+          </button>
         );
       })}
     </div>
